@@ -1,20 +1,37 @@
 #rastreamento de tarefas
 import json
-tarefas={}
+tarefas={'tarefa':[]}
+lista_tarefas=[]
+
+
+
+
 
 def criar():
     
-    tarefas['Id']=int(input('Id:'))
-    tarefas['Descricao']=str(input('Descrição:'))
-    tarefas['Status']=str(input('Status:'))
-    tarefas['Dta-Criada']=float(input('Data Criada:'))
-    tarefas['Dta_atualizada']=float(input('Data Atualizada:'))
-    
-    converte=json.dumps(tarefas, indent=4)
-        
-    with open('main.json','w') as file:
-        file.write(converte)
-            
+    while True:
+        id=int(input('ID:'))
+        descricao=str(input('Descrição:'))
+        status=str(input('Status:'))
+        dta_criada=float(input('Data criada:'))
+        dta_atualizada=float(input('Data atualizada:'))
+        break
+    while True:
+        tarefas['tarefa'].append(
+            {
+                'id':id,
+                'descricao':descricao,
+                'status':status,
+                'data_criada':dta_criada,
+                'data_atualizada':dta_atualizada
+            }
+        )
+        break
+    with open("main.json",'w') as file:
+        json.dump(tarefas,file, indent=4)
+def ver():
+    for x in lista_tarefas:
+        print(x)
 while True:
     print('-'*15)
     print('1-Criar')
@@ -27,6 +44,8 @@ while True:
     opcao=int(input('Opção:'))
     if opcao == 1:
         criar()
+    if opcao == 3:
+        ver()
     if opcao == 5:
         
         break
